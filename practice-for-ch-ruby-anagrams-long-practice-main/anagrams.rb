@@ -33,7 +33,7 @@ def third_anagram?(string1, string2)
     alpha_sort(string1) == alpha_sort(string2)
 end
 
-def alpha_sort(string)
+def alpha_sort(string) # (big) constant * n so O(n)
     alpha = ("a".."z").to_a
     arr = string.split("")
     sorted = []
@@ -47,5 +47,22 @@ def alpha_sort(string)
 end
 
 
-p third_anagram?("gizmo", "sally")    #=> false
-p third_anagram?("elvis", "lives")    #=> true
+# p third_anagram?("gizmo", "sally")    #=> false
+# p third_anagram?("elvis", "lives")    #=> true
+
+def fourth_anagram?(string1, string2)
+    hash_1 = Hash.new(0)
+    hash_2 = Hash.new(0)
+
+    pop_hash(hash_1, string1) == pop_hash(hash_2, string2)
+end
+
+def pop_hash(hash, string) # => O(n)
+    string.each_char do |char|
+        hash[char] += 1
+    end
+    hash
+end
+
+p fourth_anagram?("gizmo", "sally")    #=> false
+p fourth_anagram?("elvis", "lives")    #=> true
