@@ -34,29 +34,29 @@ end
 def largest_contiguous_subsum(list)
     sub_arr = []
 
-
-    (0...list.length-1).each do |start_idx|
-        
+    (0...list.length).each do |start_idx|
         # temp_arr = [list[start_idx]]
         (start_idx...list.length).each do |target_idx|
             
             if start_idx == target_idx
-                sub_arr << [list[start_idx]]
+                sub_arr << [ list[start_idx] ]
             else
-                temp_arr << list[target_idx]
-                sub_arr << temp_arr
+                # temp_arr << list[target_idx]
+                sub_arr << sub_arr.last + [ list[target_idx] ]
             end
-            debugger
+            #debugger
         end
     end
-    return sub_arr
+
+    max = sub_arr[0].sum
+    sub_arr.each do |arr|
+        max = arr.sum if max < arr.sum
+    end
+    max
 end
 
-
-
-
 list = [5, 3, -7]
-p largest_contiguous_subsum(list) # => 8
+# p largest_contiguous_subsum(list) # => 8
 
 # possible sub-sums
 [5]           # => 5
@@ -65,3 +65,11 @@ p largest_contiguous_subsum(list) # => 8
 [3]           # => 3
 [3, -7]       # => -4
 [-7]          # => -7
+
+def largest_contiguous_subsum2(list)
+    largest_sum = list.first
+    current_sum = list.first
+    list.each_with_index do |el, i|
+        if el > 
+    end
+end
