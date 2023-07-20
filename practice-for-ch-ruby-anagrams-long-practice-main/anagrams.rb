@@ -25,5 +25,27 @@ def second_anagram?(string1, string2)
     return string2_arr.length == 0
 end
 
-p second_anagram?("gizmo", "sally")    #=> false
-p second_anagram?("elvis", "lives")    #=> true
+# p second_anagram?("gizmo", "sally")    #=> false
+# p second_anagram?("elvis", "lives")    #=> true
+
+
+def third_anagram?(string1, string2)
+    alpha_sort(string1) == alpha_sort(string2)
+end
+
+def alpha_sort(string)
+    alpha = ("a".."z").to_a
+    arr = string.split("")
+    sorted = []
+
+    alpha.each do |letter|
+        if arr.include?(letter)
+            sorted << arr.delete_at(arr.find_index(letter))
+        end
+    end
+    sorted
+end
+
+
+p third_anagram?("gizmo", "sally")    #=> false
+p third_anagram?("elvis", "lives")    #=> true
